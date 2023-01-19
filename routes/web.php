@@ -38,12 +38,18 @@ Route::get("/single", SingleActionController::class);
 Route::get("/register", [RegistrationController::class, 'register']);
 Route::post("/register", [RegistrationController::class, 'create_user']);
 
+// customer -> get
+
 Route::get("/customer", [CustomerController::class, 'customer']);
-Route::get("/customer/create", [CustomerController::class, 'customer_create'])->name('customer_create');
-Route::post("/customer/add", [CustomerController::class, 'add_customer'])->name('customer_add');
 Route::get("/customer/view", [CustomerController::class, 'get_customer'])->name('customer_get');
-Route::get("/customer/delete/{id}", [CustomerController::class, 'delete_customer'])->name('customer_delete');
+Route::get("/customer/create", [CustomerController::class, 'customer_create'])->name('customer_create');
 Route::get("/customer/edit/{id}", [CustomerController::class, 'edit_customer'])->name('customer_edit');
+Route::get("/customer/delete/{id}", [CustomerController::class, 'delete_customer'])->name('customer_delete');
+Route::get("/customer/hardDelete/{id}", [CustomerController::class, 'hard_delete_customer'])->name('customer_hard_delete');
+Route::get("/customer/trash", [CustomerController::class, 'trash_customer'])->name('customer_trash');
+Route::get("/customer/restore/{id}", [CustomerController::class, 'restore_customer'])->name('customer_restore');
+
+Route::post("/customer/add", [CustomerController::class, 'add_customer'])->name('customer_add');
 Route::post("/customer/update/{id}", [CustomerController::class, 'update_customer'])->name('customer_update');
 
 Route::resource("/photo", ResourceController::class);

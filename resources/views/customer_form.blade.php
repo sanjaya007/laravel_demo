@@ -14,6 +14,16 @@
 @endphp
 
 @section('main_page')
+    <div class="pt-5 text-center text-primary">
+        <h1>Create Customer</h1>
+    </div>
+
+    <div class="container flex-css-row-end pt-4">
+        <a class="btn btn-primary mr-2" href="{{ url('/customer/create') }}" role="button">Add Customer</a>
+        <a class="btn btn-warning mr-2" href="{{ url('/customer/view') }}" role="button">View Customer</a>
+        <a class="btn btn-danger" href="{{ url('/customer/trash') }}" role="button">Trashed Customer</a>
+    </div>
+
     <div class="container register">
         <div class="row">
             <div class="col-md-3 register-left">
@@ -36,7 +46,7 @@
                 <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                         <h3 class="register-heading"> {{ $type === 'create' ? 'Add' : 'Update' }} Customer</h3>
-                        <form action="{{ $url }}" method="POST">
+                        <form action="{{ $url }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="row register-form">
                                 <div class="col-md-6">
@@ -75,6 +85,13 @@
                                             @error('country')
                                                 {{ $message }}
                                             @enderror
+                                        </span>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="file" name="file"
+                                            value="{{ $type === 'create' ? '' : $customer->file }}">
+                                        <span>
+                                            {{ $type === 'create' ? '' : $customer->file }}
                                         </span>
                                     </div>
                                 </div>

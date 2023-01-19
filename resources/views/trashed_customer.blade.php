@@ -19,8 +19,8 @@
 
 @section('main_page')
     <div class="container mx-auto py-5">
-        <div class="pb-5 text-center text-warning">
-            <h1>View Customer</h1>
+        <div class="pb-5 text-center text-danger">
+            <h1>Trashed Customer</h1>
         </div>
         <div class="flex-css-row-end pb-3">
             <a class="btn btn-primary mr-2" href="{{ url('/customer/create') }}" role="button">Add Customer</a>
@@ -33,7 +33,6 @@
                     <tr>
                         <th>S.N</th>
                         <th>Name</th>
-                        <th>Image</th>
                         <th>Email</th>
                         <th>DOB</th>
                         <th>Gender</th>
@@ -49,10 +48,6 @@
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $customer->name }}</td>
-                            <td>
-                                <img src="{{ url('storage/uploads/' . $customer->file) }}" style="height: 50px"
-                                    alt="uploads">
-                            </td>
                             <td>{{ $customer->email }}</td>
                             <td>{{ $customer->dob ?? 'N/A' }}</td>
                             <td>{{ genderMaping($customer->gender) }}</td>
@@ -63,11 +58,11 @@
                                 ? '<span class="badge badge-success">Active</span>'
                                 : '<span class="badge badge-danger">Inactive</span>' !!}</td>
                             <td>
-                                <a href="{{ route('customer_edit', ['id' => $customer->id]) }}">
-                                    <button class="btn btn-primary">Edit</button>
+                                <a href="{{ route('customer_restore', ['id' => $customer->id]) }}">
+                                    <button class="btn btn-success">Restore</button>
                                 </a>
-                                <a href="{{ url('/customer/delete') }}/{{ $customer->id }}">
-                                    <button class="btn btn-danger">Trash</button>
+                                <a href="{{ url('/customer/hardDelete') }}/{{ $customer->id }}">
+                                    <button class="btn btn-danger">Delete</button>
                                 </a>
                             </td>
                         </tr>

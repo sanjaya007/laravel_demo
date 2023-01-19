@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('password');
             $table->text('address')->nullable();
             $table->enum('gender', ["M", "F", "O"]);
+            $table->string('file', 100);
             $table->tinyInteger('status')->default(0);
             $table->tinyInteger('points')->default(0);
             $table->timestamps();
