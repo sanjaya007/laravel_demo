@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,10 +15,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 
-Route::get("/getData", function () {
-    echo ("Getting Data !");
-});
+Route::get("/users", [UserController::class, 'index']);
+Route::post("/user/store", [UserController::class, 'store']);
+Route::get("/user/{id}", [UserController::class, 'show']);
+Route::put("/user/{id}", [UserController::class, 'update']);
+Route::patch("/user/change-password/{id}", [UserController::class, 'change_password']);
+Route::delete("/user/{id}", [UserController::class, 'destroy']);

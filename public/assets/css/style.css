@@ -118,3 +118,13 @@ html {
 .error-text {
     font-size: 12px;
 }
+
+table {
+    height: 500px;
+}
+
+th,
+td,
+tr {
+    white-space: nowrap;
+}

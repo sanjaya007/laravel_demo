@@ -28,7 +28,7 @@
             <a class="btn btn-danger" href="{{ url('/customer/trash') }}" role="button">Trashed Customer</a>
         </div>
         <div class="table-wrapper flex-css">
-            <table class="table table-striped table-inverse">
+            <table class="table-responsive table table-striped table-inverse">
                 <thead class="thead-inverse">
                     <tr>
                         <th>S.N</th>
@@ -50,8 +50,8 @@
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $customer->name }}</td>
                             <td>
-                                <img src="{{ url('storage/uploads/' . $customer->file) }}" style="height: 50px"
-                                    alt="uploads">
+                                <img src="{{ $customer->file == '' ? url('storage/uploads/' . $customer->file) : 'https://picsum.photos/seed/girl/50/50' }}"
+                                    style="height: 50px" alt="uploads">
                             </td>
                             <td>{{ $customer->email }}</td>
                             <td>{{ $customer->dob ?? 'N/A' }}</td>
